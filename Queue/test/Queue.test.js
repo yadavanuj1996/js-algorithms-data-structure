@@ -1,3 +1,5 @@
+import Queue from '../Queue.js';
+
 describe('Queue', () => {
   it('should create empty queue', () => {
     const queue = new Queue();
