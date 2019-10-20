@@ -1,3 +1,5 @@
+import DoublyLinkedList from '../DoublyLinkedList.js';
+
 describe('DoublyLinkedList', () => {
   it('should create empty linked list', () => {
     const linkedList = new DoublyLinkedList();
@@ -10,8 +12,8 @@ describe('DoublyLinkedList', () => {
     expect(linkedList.head).toBeNull();
     expect(linkedList.tail).toBeNull();
 
-    linkedList.append(1);
-    linkedList.append(2);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtEnd(2);
 
     expect(linkedList.head.next.value).toBe(2);
     expect(linkedList.tail.previous.value).toBe(1);
@@ -21,12 +23,12 @@ describe('DoublyLinkedList', () => {
   it('should prepend node to linked list', () => {
     const linkedList = new DoublyLinkedList();
 
-    linkedList.prepend(2);
+    linkedList.insertAtStart(2);
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('2');
 
-    linkedList.append(1);
-    linkedList.prepend(3);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtStart(3);
 
     expect(linkedList.head.next.next.previous).toBe(linkedList.head.next);
     expect(linkedList.tail.previous.next).toBe(linkedList.tail);
