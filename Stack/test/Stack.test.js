@@ -12,7 +12,7 @@ describe('Stack', () => {
 
     stack.push(1);
     stack.push(2);
-
+    
     expect(stack.toString()).toBe('2,1');
   });
 
