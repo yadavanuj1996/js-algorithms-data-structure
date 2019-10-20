@@ -130,4 +130,39 @@ export default class DoublyLinkedList {
     }
     return deletedNode;
   }
+  search(valueObj){
+    let resultNode=null;
+    if(this.isEmpty()){
+      resultNode=null;
+    }
+    else {
+      let currentNode=this.head; 
+      while(currentNode!==null){
+        if(currentNode.value===valueObj.value){
+          resultNode=currentNode;
+          break;
+        }
+        currentNode=currentNode.next;
+      }
+    }
+    return resultNode;
+  }
+  reverse(){
+    if(this.isEmpty()){
+     return ; 
+    }
+    else{
+      let currentNode=this.head;
+      while(currentNode!==null){
+        let nextNode=currentNode.next;
+        currentNode.next=currentNode.previous;
+        currentNode.previous=nextNode;
+        currentNode=nextNode;
+      }
+    }
+    let tempHead=this.head;
+    this.head=this.tail;
+    this.tail=tempHead;
+    
+  }
 }

@@ -6,7 +6,7 @@ import 'jasmine-core/lib/jasmine-core/boot.js';
 
 // Import your spec files
 import './DoublyLinkedList.test';
-//import './DoublyLinkedListNode.test';
+import './DoublyLinkedListNode.test';
 
 
 
