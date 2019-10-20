@@ -1,3 +1,5 @@
+import DoublyLinkedListNode from '../DoublyLinkedListNode.js';
+
 describe('DoublyLinkedListNode', () => {
   it('should create list node with value', () => {
     const node = new DoublyLinkedListNode(1);
