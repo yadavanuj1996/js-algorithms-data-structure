@@ -63,4 +63,71 @@ export default class DoublyLinkedList {
       this.insertAtEnd(element);
     });
   }
+  remove(value){
+    let deletedNode=null;
+    if(this.isEmpty()){
+      deletedNode=null;
+    }
+    else if(this.hasSingleElement()){
+      deletedNode=this.head;
+      this.head=null;
+      this.tail=null;
+    }
+    else{
+      let currentNode=this.head;
+      while(currentNode!==null){
+        if(currentNode.value===value){
+          deletedNode=currentNode;
+          if(this.head===currentNode){ // check for head
+            this.head=this.head.next;
+            currentNode.next.previous=currentNode.previous;
+          }
+          else if(this.tail===currentNode){ // check for tail
+            this.tail=this.tail.previous;
+            currentNode.previous.next=currentNode.next;
+          }
+          else{ // check for middle element
+            currentNode.next.previous=currentNode.previous;
+            currentNode.previous.next=currentNode.next;
+          } 
+        }
+        currentNode=currentNode.next;
+      }
+    }
+    return deletedNode;
+  }
+  removeTail(){
+    let deletedNode=null;
+    if(this.isEmpty()){
+      deletedNode=null;
+    }
+    else if(this.hasSingleElement()){
+      deletedNode=this.tail;
+      this.head=null;
+      this.tail=null;
+    }
+    else {
+      deletedNode=this.tail;
+      this.tail=this.tail.previous; // updating tail
+      this.tail.next=null;
+    }
+    return deletedNode;
+  }
+  removeHead(){
+    let deletedNode=null;
+    if(this.isEmpty()){
+      deletedNode=null;
+    }
+    else if(this.hasSingleElement()){
+      deletedNode=this.head;
+      this.head=null;
+      this.tail=null;
+    }
+    else {
+      deletedNode=this.head;
+      this.head=this.head.next; // updating tail
+      this.head.previous=null;
+    }
+    return deletedNode;
+  }
 }

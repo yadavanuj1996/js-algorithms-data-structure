@@ -46,29 +46,29 @@ describe('DoublyLinkedList', () => {
   it('should delete node by value from linked list', () => {
     const linkedList = new DoublyLinkedList();
 
-    expect(linkedList.delete(5)).toBeNull();
+    expect(linkedList.remove(5)).toBeNull();
 
-    linkedList.append(1);
-    linkedList.append(1);
-    linkedList.append(2);
-    linkedList.append(3);
-    linkedList.append(3);
-    linkedList.append(3);
-    linkedList.append(4);
-    linkedList.append(5);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtEnd(2);
+    linkedList.insertAtEnd(3);
+    linkedList.insertAtEnd(3);
+    linkedList.insertAtEnd(3);
+    linkedList.insertAtEnd(4);
+    linkedList.insertAtEnd(5);
 
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('5');
 
-    const deletedNode = linkedList.delete(3);
+    const deletedNode = linkedList.remove(3);
     expect(deletedNode.value).toBe(3);
     expect(linkedList.tail.previous.previous.value).toBe(2);
     expect(linkedList.toString()).toBe('1,1,2,4,5');
 
-    linkedList.delete(3);
+    linkedList.remove(3);
     expect(linkedList.toString()).toBe('1,1,2,4,5');
 
-    linkedList.delete(1);
+    linkedList.remove(1);
     expect(linkedList.toString()).toBe('2,4,5');
 
     expect(linkedList.head.toString()).toBe('2');
@@ -76,50 +76,50 @@ describe('DoublyLinkedList', () => {
     expect(linkedList.tail.previous.previous).toBe(linkedList.head);
     expect(linkedList.tail.toString()).toBe('5');
 
-    linkedList.delete(5);
+    linkedList.remove(5);
     expect(linkedList.toString()).toBe('2,4');
 
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('4');
 
-    linkedList.delete(4);
+    linkedList.remove(4);
     expect(linkedList.toString()).toBe('2');
 
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('2');
     expect(linkedList.head).toBe(linkedList.tail);
 
-    linkedList.delete(2);
+    linkedList.remove(2);
     expect(linkedList.toString()).toBe('');
   });
 
   it('should delete linked list tail', () => {
     const linkedList = new DoublyLinkedList();
 
-    expect(linkedList.deleteTail()).toBeNull();
+    expect(linkedList.removeTail()).toBeNull();
 
-    linkedList.append(1);
-    linkedList.append(2);
-    linkedList.append(3);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtEnd(2);
+    linkedList.insertAtEnd(3);
 
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('3');
 
-    const deletedNode1 = linkedList.deleteTail();
+    const deletedNode1 = linkedList.removeTail();
 
     expect(deletedNode1.value).toBe(3);
     expect(linkedList.toString()).toBe('1,2');
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('2');
 
-    const deletedNode2 = linkedList.deleteTail();
+    const deletedNode2 = linkedList.removeTail();
 
     expect(deletedNode2.value).toBe(2);
     expect(linkedList.toString()).toBe('1');
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('1');
 
-    const deletedNode3 = linkedList.deleteTail();
+    const deletedNode3 = linkedList.removeTail();
 
     expect(deletedNode3.value).toBe(1);
     expect(linkedList.toString()).toBe('');
@@ -130,15 +130,15 @@ describe('DoublyLinkedList', () => {
   it('should delete linked list head', () => {
     const linkedList = new DoublyLinkedList();
 
-    expect(linkedList.deleteHead()).toBeNull();
+    expect(linkedList.removeHead()).toBeNull();
 
-    linkedList.append(1);
-    linkedList.append(2);
+    linkedList.insertAtEnd(1);
+    linkedList.insertAtEnd(2);
 
     expect(linkedList.head.toString()).toBe('1');
     expect(linkedList.tail.toString()).toBe('2');
 
-    const deletedNode1 = linkedList.deleteHead();
+    const deletedNode1 = linkedList.removeHead();
 
     expect(deletedNode1.value).toBe(1);
     expect(linkedList.head.previous).toBeNull();
@@ -146,7 +146,7 @@ describe('DoublyLinkedList', () => {
     expect(linkedList.head.toString()).toBe('2');
     expect(linkedList.tail.toString()).toBe('2');
 
-    const deletedNode2 = linkedList.deleteHead();
+    const deletedNode2 = linkedList.removeHead();
 
     expect(deletedNode2.value).toBe(2);
     expect(linkedList.toString()).toBe('');
@@ -160,9 +160,9 @@ describe('DoublyLinkedList', () => {
     const nodeValue1 = { value: 1, key: 'key1' };
     const nodeValue2 = { value: 2, key: 'key2' };
 
-    linkedList
-      .append(nodeValue1)
-      .prepend(nodeValue2);
+    
+      linkedList.insertAtEnd(nodeValue1)
+      linkedList.insertAtStart(nodeValue2);
 
     const nodeStringifier = value => `${value.key}:${value.value}`;
 
