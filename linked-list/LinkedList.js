@@ -70,6 +70,18 @@ export default class LinkedList{
     }
     return null;
   }
+  searchWithCallback(callback){
+    let currentNode=this.head;
+    let matchedNode=null;
+    while(currentNode!=null){
+      if(callback(currentNode)){
+        matchedNode=currentNode;
+        break; 
+      }
+      currentNode=currentNode.next;
+    }
+    return matchedNode;
+  }
   isEmpty(){
     return this.head===null;
   }
