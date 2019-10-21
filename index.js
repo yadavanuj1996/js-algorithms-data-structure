@@ -3,8 +3,11 @@ import {executeDoublyLinkedLinkTest} from './doubly-linked-list/test/test.js';
 import {executeQueueTest} from './Queue/test/test.js';
 import {executeStackTest} from './Stack/test/test.js';
 import {executeHashTableTest} from './hash-table/test/test.js';
+import {executeHeapTest} from './heap/test/test.js';
+
 //executeLinkedLinkTest();
 //executeDoublyLinkedLinkTest();
 //executeQueueTest();
 //executeStackTest();
-executeHashTableTest();
+//executeHashTableTest();
+executeHeapTest();
