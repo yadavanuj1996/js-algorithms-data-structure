@@ -19,12 +19,11 @@ describe('HashTable', () => {
 
   it('should set, read and delete data with collisions', () => {
     const hashTable = new HashTable(3);
-
     expect(hashTable.hash('a')).toBe(1);
     expect(hashTable.hash('b')).toBe(2);
     expect(hashTable.hash('c')).toBe(0);
     expect(hashTable.hash('d')).toBe(1);
-
+    
     hashTable.set('a', 'sky-old');
     hashTable.set('a', 'sky');
     hashTable.set('b', 'sea');
@@ -36,7 +35,6 @@ describe('HashTable', () => {
     expect(hashTable.has('c')).toBe(true);
 
     const stringifier = value => `${value.key}:${value.value}`;
-
     expect(hashTable.buckets[0].toString(stringifier)).toBe('c:earth');
     expect(hashTable.buckets[1].toString(stringifier)).toBe('a:sky,d:ocean');
     expect(hashTable.buckets[2].toString(stringifier)).toBe('b:sea');
@@ -60,7 +58,7 @@ describe('HashTable', () => {
     const hashTable = new HashTable();
 
     hashTable.set('objectKey', { prop1: 'a', prop2: 'b' });
-
+    
     const object = hashTable.get('objectKey');
     expect(object).toBeDefined();
     expect(object.prop1).toBe('a');
