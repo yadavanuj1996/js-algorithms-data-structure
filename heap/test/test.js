@@ -7,7 +7,7 @@ import 'jasmine-core/lib/jasmine-core/boot.js';
 // Import your spec files
 import './Heap.test';
 //import './MaxHeap.test';
-//import './MinHeap.test';
+import './MinHeap.test';
 
 export let executeHeapTest=()=>{
   (function bootstrap () {

@@ -1,5 +1,5 @@
 import MinHeap from '../MinHeap';
-//import Comparator from '../../../utils/comparator/Comparator';
+import Comparator from '../../utils/comparator/Comparator';
 
 describe('MinHeap', () => {
   it('should create an empty min heap', () => {
@@ -52,7 +52,7 @@ describe('MinHeap', () => {
     minHeap.add(10);
     minHeap.add(11);
     minHeap.add(1);
-
+    
     expect(minHeap.toString()).toBe('1,3,10,11,5');
 
     expect(minHeap.poll()).toBe(1);
@@ -69,7 +69,7 @@ describe('MinHeap', () => {
 
     expect(minHeap.poll()).toBe(11);
     expect(minHeap.toString()).toBe('');
-
+    
     expect(minHeap.poll()).toBeNull();
     expect(minHeap.toString()).toBe('');
   });
@@ -98,7 +98,7 @@ describe('MinHeap', () => {
     minHeap.add(10);
     minHeap.add(11);
     minHeap.add(11);
-
+    
     expect(minHeap.toString()).toBe('3,11,10,12,11');
 
     expect(minHeap.find(5)).toEqual([]);
