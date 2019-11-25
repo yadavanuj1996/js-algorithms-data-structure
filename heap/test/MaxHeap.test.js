@@ -166,7 +166,7 @@ describe('MaxHeap', () => {
       return a.length < b.length ? -1 : 1;
     });
 
-    maxHeap.remove('hey', comparator);
+    maxHeap.remove('ccc', comparator);
     expect(maxHeap.toString()).toBe('dddd,a,bb');
   });
 });
