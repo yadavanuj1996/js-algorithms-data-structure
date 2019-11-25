@@ -33,6 +33,7 @@ export default class Heap {
     let rightChildIndex = this.getRightChildIndex(parentIndex);
     return rightChildIndex < this.heapContainer.length;
   }
+  // whether heap contains particular index
   heapHasIndex(index){
     if(index>=0 && index<this.heapContainer.length)
       return true;
@@ -58,6 +59,7 @@ export default class Heap {
   }
   // to swap two nodes in heap
   swap(firstIndex, secondIndex) {
+
     let temp = this.heapContainer[firstIndex];
     this.heapContainer[firstIndex] = this.heapContainer[secondIndex];
     this.heapContainer[secondIndex] = temp;
@@ -82,6 +84,8 @@ export default class Heap {
     ) {
       this.swap(this.getParentIndex(index), index);
       index = this.getParentIndex(index);
+      parentHeapElement = this.getParent(index);
+      currentHeapElement = this.heapContainer[index];
     }
   }
   add(value) {
@@ -100,21 +104,22 @@ export default class Heap {
       this.isPairInRightOrder(currentElement, rightChildElement))
     ) {
       return;
-    } else if (
-      (leftChildElement===null || !this.isPairInRightOrder(currentElement, leftChildElement)) && (rightChildElement===null ||
+    } 
+    else if (
+      (!this.isPairInRightOrder(currentElement, leftChildElement)) && (rightChildElement===null ||
       this.isPairInRightOrder(currentElement, rightChildElement))
     ) {
       this.swap(index, this.getLeftChildIndex(index));
       this.heapifyDown(this.getLeftChildIndex(index));
-    } else if (
-      (leftChildElement===null || this.isPairInRightOrder(currentElement, leftChildElement)) && (rightChildElement===null ||
-      !this.isPairInRightOrder(currentElement, rightChildElement))
+    } 
+    else if (
+      (leftChildElement===null || this.isPairInRightOrder(currentElement, leftChildElement)) && (!this.isPairInRightOrder(currentElement, rightChildElement))
     ) {
       this.swap(index, this.getRightChildIndex(index));
       this.heapifyDown(this.getRightChildIndex(index));
-    } else if (
-      (leftChildElement===null || !this.isPairInRightOrder(currentElement, leftChildElement)) && (rightChildElement===null ||
-      !this.isPairInRightOrder(currentElement, rightChildElement))
+    } 
+    else if (
+      (!this.isPairInRightOrder(currentElement, leftChildElement)) && (!this.isPairInRightOrder(currentElement, rightChildElement))
     ) {
         if (this.isPairInRightOrder(leftChildElement, rightChildElement)) {
           this.swap(index, this.getLeftChildIndex(index));
@@ -139,7 +144,44 @@ export default class Heap {
    
     return rootElement;
   }
-
+  find(element,comparator=this.compare){
+    let result=[];
+    this.heapContainer.forEach((x,i)=>{
+      if(comparator.equal(x,element))
+        result.push(i);
+    });
+    return result;
+  }
+  remove(element,comparator=this.compare){
+    let totalOccurenceOfElement=this.find(element,comparator).length;
+    for(let i=0;i<totalOccurenceOfElement;i++){
+        let removeIndex=this.heapContainer.findIndex((x)=> x===element ); // findIndex is used for finding first found element's index
+        let heapSize=this.heapContainer.length;
+        // if the element is at last index simply remove it as we
+        // don't need to haepify
+        if(removeIndex===heapSize-1){
+            this.heapContainer.pop();
+        }
+        else{
+          this.heapContainer[removeIndex]=this.heapContainer[heapSize-1]; 
+          this.heapContainer.pop();
+          let parentElement=this.getParent(removeIndex);
+          let elementAtRemovedIndex=this.heapContainer[removeIndex];
+          // if at index where the element is removed does not have a parent element that means it was on root and we cannot go up to heapify and alternately if the parent element
+          // is in right order as compare to the new element that is moved to removed index that means we dont' have to take care of upper part of heap as if it is i right position to parent than it will also be in correct position to it's
+          // parent's parent and  we have used hasLeftChild because we only need to heapify down if there exists element in 
+          // down side
+          if(!parentElement || this.isPairInRightOrder(parentElement,elementAtRemovedIndex) && this.hasLeftChild(removeIndex)){
+            this.heapifyDown(removeIndex);
+          }
+          else{
+            this.heapifyUp(removeIndex);
+          }
+        }
+      
+    }
+    return this;
+  }
   toString() {
     return this.heapContainer.toString();
   }

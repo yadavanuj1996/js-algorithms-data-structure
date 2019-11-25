@@ -166,7 +166,7 @@ describe('MinHeap', () => {
       return a.length < b.length ? -1 : 1;
     });
 
-    minHeap.remove('hey', comparator);
+    minHeap.remove('ccc', comparator);
     expect(minHeap.toString()).toBe('a,bb,dddd');
   });
 
