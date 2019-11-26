@@ -88,6 +88,7 @@ export default class Heap {
       currentHeapElement = this.heapContainer[index];
     }
   }
+  // add element to heap on last index and then heapify to put it on right index 
   add(value) {
     this.heapContainer.push(value);
     this.heapifyUp();
@@ -130,6 +131,7 @@ export default class Heap {
         }
     }
   }
+  // remove top element or root of heap
   poll() {
     let rootElement = null;
     if (this.isEmpty()) {
@@ -144,6 +146,7 @@ export default class Heap {
    
     return rootElement;
   }
+  // find all occurences of element in heap 
   find(element,comparator=this.compare){
     let result=[];
     this.heapContainer.forEach((x,i)=>{
@@ -152,10 +155,11 @@ export default class Heap {
     });
     return result;
   }
+  // remove all the occurences of a element from heap
   remove(element,comparator=this.compare){
     let totalOccurenceOfElement=this.find(element,comparator).length;
     for(let i=0;i<totalOccurenceOfElement;i++){
-        let removeIndex=this.heapContainer.findIndex((x)=> x===element ); // findIndex is used for finding first found element's index
+        let removeIndex=this.heapContainer.findIndex((x)=> comparator.equal(x,element)); // findIndex is used for finding first found element's index
         let heapSize=this.heapContainer.length;
         // if the element is at last index simply remove it as we
         // don't need to haepify

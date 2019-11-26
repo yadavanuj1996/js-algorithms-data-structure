@@ -2,8 +2,8 @@ export default class Comparator{
   constructor(compareFunction){
     if(compareFunction)
       this.compare=compareFunction;
-    
-    this.compare=this.defaultCompareFunction;
+    else
+      this.compare=this.defaultCompareFunction;
   }
   defaultCompareFunction(a,b){
     let result=null;
