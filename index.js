@@ -5,6 +5,7 @@ import {executeStackTest} from './Stack/test/test.js';
 import {executeHashTableTest} from './hash-table/test/test.js';
 import {executeHeapTest} from './heap/test/test.js';
 import {executePriorityQueueTest} from './priority-queue/test/test.js';
+import {executeTrieTest} from './trie/test/test.js';
 
 //executeLinkedLinkTest();
 //executeDoublyLinkedLinkTest();
@@ -12,4 +13,5 @@ import {executePriorityQueueTest} from './priority-queue/test/test.js';
 //executeStackTest();
 //executeHashTableTest();
 //executeHeapTest();
-executePriorityQueueTest();
+//executePriorityQueueTest();
+executeTrieTest();
