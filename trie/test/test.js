@@ -5,8 +5,8 @@ import 'jasmine-core/lib/jasmine-core/jasmine-html.js';
 import 'jasmine-core/lib/jasmine-core/boot.js';
 
 // Import your spec files
-//import './Trie.test';
 import './TrieNode.test';
+import './Trie.test';
 
 
 

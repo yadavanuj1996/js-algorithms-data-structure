@@ -83,7 +83,7 @@ describe('Trie', () => {
     trie.addWord('carpet');
     trie.addWord('car');
     trie.addWord('caption');
-
+    
     expect(trie.doesWordExist('cat')).toBe(true);
     expect(trie.doesWordExist('cats')).toBe(true);
     expect(trie.doesWordExist('carpet')).toBe(true);

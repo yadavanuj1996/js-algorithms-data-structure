@@ -12,14 +12,14 @@ export default class TrieNode{
       this.children.set(character,new TrieNode(character,isWordComplete));
     }
     let childNode=this.children.get(character);
-    /**
+       /**
      * We have used this.isWordComplete to check of it already 
      * has a word complete if false then check present
      * isWordComplete as the sample ex provided if carpet existe and
      * car is entered  later as complete work 
      * 
      */  
-    childNode.isWordComplete=this.isWordComplete || isWordComplete;
+    childNode.isWordComplete=childNode.isWordComplete || isWordComplete;
     return childNode;
   }
   getChild(character){
